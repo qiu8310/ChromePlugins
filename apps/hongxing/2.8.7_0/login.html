@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>{{ "login.title" | translate}}</title>
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/css/login.css"/>
+    <link rel="stylesheet" href="/css/animate.css"/>
+</head>
+<body>
+
+<div class="container font-hei" ng-controller="LoginPageController" ng-cloak>
+    <div class="heading">
+        <h1 class="font-kai text-center text-danger">{{"app" | translate}}</h1>
+
+        <h2 class="font-kai text-center text-muted">
+            {{ "login.head" | translate}}
+        </h2>
+    </div>
+
+    <div class="login-box">
+        <a class="tab col-xs-6"
+           ng-class="{active: $root.step=='register'}"
+           ng-click="$root.step='register'">{{"login.register"|translate}}</a>
+
+        <a class="tab col-xs-6"
+           ng-class="{active: $root.step=='login'}"
+           ng-click="$root.step='login'">{{"login.login"|translate}}</a>
+
+        <ng-view></ng-view>
+    </div>
+
+    <div class="alert alert-success animated bounce" ng-show="search().source=='logout'">
+        {{"login.messages.success_logout"|translate}}
+    </div>
+
+    <div class="alert alert-warning animated bounce" ng-show="search().source=='force-login'">
+        {{"login.messages.notice_must_login_or_register"|translate}}
+    </div>
+
+    <div class="alert alert-warning animated bounce" ng-show="search().message">
+        {{ search().message }}
+    </div>
+
+    <p class="small text-muted text-center">{{"login.messages.contact_me"|translate}}</p>
+</div>
+<script data-main="/js/login/login.js"
+        src="/js/libs/require.js"></script>
+</body>
+</html>

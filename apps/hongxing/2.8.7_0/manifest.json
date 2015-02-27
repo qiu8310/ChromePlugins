@@ -1,0 +1,24 @@
+{
+   "background": {
+      "page": "background.html"
+   },
+   "browser_action": {
+      "default_icon": "img/icon-auto.png",
+      "default_popup": "popup.html",
+      "default_title": "红杏"
+   },
+   "content_security_policy": "script-src 'self' 'unsafe-eval' http://127.0.0.1 https://ssl.google-analytics.com; object-src 'self';",
+   "default_locale": "zh_CN",
+   "description": "__MSG_DESCRIPTION__",
+   "icons": {
+      "128": "img/logo.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQChjvyuydsD+oBRni5bp3rE0jjLCNlHmkGeGCWDKx7OvFkTsPLlqsrHEL146DKtCdB5PpJ7pXBr4hhdqmTySuMhJPPidSc4VYEH5o8nXBLhNdnOFVFeuZ6cShan8t+5ILFn3TQPfvVqkvMERXd49C0x/Jrw7MG/WXHYOc6XJgLI+QIDAQAB",
+   "manifest_version": 2,
+   "minimum_chrome_version": "22.0.0",
+   "name": "__MSG_EXT_NAME__",
+   "options_page": "options.html",
+   "permissions": [ "management", "proxy", "idle", "tabs", "cookies", "notifications", "webRequest", "webRequestBlocking", "http://*/", "https://*/" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "2.8.7"
+}

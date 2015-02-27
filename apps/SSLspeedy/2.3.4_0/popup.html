@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+<meta charset="utf-8">
+<title>webvpn</title>
+
+<link rel="stylesheet" href="main.css" type="text/css" media="screen" />   
+<script src="jquery.js"></script> 
+</head> 
+<body>
+<div class="hidden" id="pac">
+
+</div> 
+<div id="login" class="ac">
+	
+<form class="form-inline">
+
+  
+ 
+ 
+<div style="width:95%;height:200px;overflow: scroll;margin : 10px" id="serverdiv">
+ <table name="serverlist" id="serverlist" class="table table-bordered table-striped" width="90%">
+   <tr><td id="reloadhint">请点击更新列表按钮</td></tr>
+ </table>
+  
+ </div>
+
+<div style="text-align:center" class="control-group" id="logdiv">
+ 	<input type="text" id="serverdomain" name="serverdomain" class="hide" />
+	 <div class="controls">
+	  <input type="text"  name="username" id="username" style="width:100px;" placeholder="username">
+	  <input type="password" name="password" id="password" style="width:100px;" placeholder="Password">
+	  </div>
+ </div>
+<div style="text-align:center;margin-top:10px">
+   <button type="button" class="btn   on" id="connectbtn" ><i class="icon-play"></i></button>
+   <button type="button" class="btn   disabled" style="margin-left:-8px" id="disconnect" disabled="disabled"><i class="icon-stop"></i></button> 
+
+   <button type="button" class="btn" id="reloadbt" style="margin-left:-2px"><i class="icon-refresh"></i>更新列表</button>
+   <a href="settings.html" target="_blank" id="setbt" class="btn btn-info" title="settings" style="margin-left:-1px"><i class=" icon-wrench"></i></a>
+  </div>   
+  <div style="text-align:left;margin:10px 10px 0 0 " class="alert alert-info hide" id="info">system info</div>
+  </form>   
+  <hr /> 
+  <form class="form-inline" id="showcurrentdomainstatusform"><div id="consolediv"  class="controls" style="text-align:left">
+当前浏览网页域名白名单快捷管理:<input  type='text' style='width:190px'  id='currentBrowsingDomain'  class='input'  /> 
+<button  id='sslremovebt' style="display:none" class='btn' type='button'  title='移除SSL'><i class='icon-remove'></i></button>
+<button  id='ssladdbt'  class='btn' type='button'  title='添加到SSL'><i class='icon-plus'></i></button>
+  </div>
+</form>
+ 
+
+
+</div> 
+<div style="color:#444;text-indent:5px;background:#ddd;padding:4px;" id="cinfo">    </div> 
+<script src="myscript.js"></script> 
+
+</body>
+</html>

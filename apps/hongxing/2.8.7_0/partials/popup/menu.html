@@ -1,0 +1,99 @@
+<div class="menu page">
+
+    <div ng-switch x-on="state">
+        <div class="block section" ng-switch-when="blocked">
+            <span class="section-title" translate="popup.not_available_domains"></span>
+            <ul class="block-list list-unstyled">
+                <li ng-repeat="domain in blockedDomains">
+                    <label>
+                        <input type="checkbox" ng-model="domain.selected">
+                        <span class="text-danger">{{ domain.name }}</span>
+                    </label>
+                </li>
+            </ul>
+            <button type="button" class="add btn btn-block btn-success"
+                    ng-click="addSelectedDomains()">
+                <i class="glyphicon glyphicon-plus pull-right"></i>
+                {{'popup.add_domain'|translate}}
+            </button>
+        </div>
+
+        <div class="non-block section" ng-switch-when="normal">
+            <span class="section-title">{{ currentDomain }}</span>
+
+            <div ng-switch x-on="currentDomainIsAdded">
+                <button type="button" class="add new btn btn-block btn-success"
+                        ng-switch-when="no"
+                        ng-click="addDomain(currentDomain)">
+                    <i class="glyphicon glyphicon-plus pull-right"></i>
+                        {{'popup.add_domain'|translate}}
+                </button>
+                <div ng-switch-when="yes">
+                    <button type="button" class="added right-btn btn btn-default pull-right"
+                            ng-click="remove(currentDomain)"
+                            title="{{'popup.delete_domain'|translate}}"
+                            data-title="{{'popup.delete_domain'|translate}}"
+                            data-placement="left" data-type="info" bs-tooltip>
+                        <i class="glyphicon glyphicon-trash pull-right text-danger"></i>
+                    </button>
+                    <div>
+                        <button type="button" class="added left-btn old btn btn-block btn-default pull-right"
+                            disabled translate="popup.domain_already_in">
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+    <hr>
+
+    <span class="section-title" translate="popup.mode_title"></span>
+
+    <div class="tips-box" ng-init="tips=''" ng-show="tips">
+        <div class="tips">
+            <div class="content">
+                {{ tips }}
+            </div>
+        </div>
+    </div>
+
+    <div class="modes btn-group btn-group-justified btn-group-sm">
+        <a href="" class="btn"
+           ng-class="{'btn-success':$root.mode=='auto', 'btn-default': $root.mode!='auto'}"
+           ng-mouseenter="show_mode_tips('auto')"
+           ng-mouseleave="show_mode_tips()"
+           ng-click="switchMode('auto')"
+           translate="popup.auto_name">
+        </a>
+        <a href="" class="btn"
+           ng-class="{'btn-warning':$root.mode=='always', 'btn-default': $root.mode!='always'}"
+           ng-mouseenter="show_mode_tips('always')"
+           ng-mouseleave="show_mode_tips()"
+           ng-click="switchMode('always')"
+           translate="popup.always_name">
+        </a>
+        <a href="" class="btn"
+           ng-class="{'btn-danger':$root.mode=='never', 'btn-default': $root.mode!='never'}"
+           ng-mouseenter="show_mode_tips('never')"
+           ng-mouseleave="show_mode_tips()"
+           ng-click="switchMode('never')"
+           translate="popup.never_name">
+        </a>
+    </div>
+
+    <hr>
+    <div class="footer">
+        <button class="options btn btn-default btn-xs"
+            ng-click="openOptions()"
+            translate="popup.options_guide">
+        </button>
+
+        <a ng-click="routeToAdd()" class="add btn btn-link btn-xs glyphicon glyphicon-plus pull-right"
+           data-placement="left" data-type="info"
+           data-container="body" bs-tooltip="addTooltip"></a>
+    </div>
+</div>

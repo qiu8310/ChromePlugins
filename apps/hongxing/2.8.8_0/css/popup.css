@@ -1,0 +1,127 @@
+body {
+  overflow: hidden;
+}
+[ng-cloak],
+.ng-hide {
+  display: none !important;
+}
+.page {
+  width: 190px;
+  position: relative;
+  font-size: 12px;
+  margin: 10px;
+  overflow: hidden;
+}
+.section-title {
+  font-size: 12px;
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.block-alert {
+  margin-bottom: 0;
+  padding: 10px;
+  font-size: 12px;
+}
+hr {
+  margin: 10px 0;
+}
+.menu.page .block-list {
+  margin-bottom: 10px;
+}
+.menu.page .block-list li {
+  margin: 0;
+}
+.menu.page .block-list label {
+  display: block;
+  font-weight: normal;
+  margin-left: 5px;
+}
+.menu.page .block-list label input[type=checkbox] {
+  float: left;
+  margin-right: 5px;
+}
+.menu.page .btn.add {
+  font-size: 12px;
+}
+.menu.page .btn.add i {
+  margin-right: 10px;
+}
+.menu.page .btn.added {
+  font-size: 12px;
+}
+.menu.page .left-btn {
+  display: inline-block;
+  width: 100%;
+  position: absolute;
+  padding-right: 38px;
+}
+.menu.page .right-btn {
+  border-color: #909090;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  z-index: 3;
+}
+.menu.page .right-btn i {
+  z-index: 3;
+  line-height: inherit;
+}
+.menu.page .tips-box {
+  position: relative;
+}
+.menu.page .tips-box .tips {
+  position: absolute;
+  z-index: 100;
+  background: black;
+  width: 100%;
+  border-radius: 5px;
+  bottom: 5px;
+  opacity: 0.9;
+}
+.menu.page .tips-box .tips .content {
+  font-size: 12px;
+  color: white;
+  margin: 10px 10px;
+}
+.menu.page .modes {
+  position: relative;
+}
+.menu.page .modes .btn-danger {
+  background-color: #888;
+  border: 1px solid #777;
+}
+.menu.page .modes .btn-danger:hover {
+  background-color: #777;
+}
+.menu.page .footer {
+  height: 25px;
+}
+.menu.page .footer a.glyphicon {
+  color: #444;
+}
+.menu.page .footer a.glyphicon:hover {
+  color: #888;
+}
+.add.page .text-muted {
+  display: inline-block;
+  margin-top: 5px;
+}
+.add.page button {
+  margin-top: 5px;
+}
+.conflict.page ul li {
+  padding: 5px 0px;
+  color: #444;
+}
+.conflict.page ul li img {
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+.conflict.page ul li a {
+  display: block;
+  margin-left: 20px;
+  line-height: 16px;
+  overflow-x: hidden;
+  line-break: normal;
+}

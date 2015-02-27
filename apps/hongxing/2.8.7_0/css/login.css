@@ -1,0 +1,180 @@
+body {
+  background-color: #f5f5f5;
+  overflow-y: scroll;
+}
+.font-hei {
+  font-family: "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragino Sans GB", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+}
+.font-kai {
+  font-family: Baskerville, Georgia, "Liberation Serif", "Kaiti SC", STKaiti, "AR PL UKai CN", "AR PL UKai HK", "AR PL UKai TW", "AR PL UKai TW MBE", "AR PL KaitiM GB", KaiTi, KaiTi_GB2312, TW\-Kai, serif;
+}
+.font-song {
+  font-family: Georgia, "Nimbus Roman No9 L", "Songti SC", STSong, "AR PL SungtiL GB", NSimSun, SimSun, TW\-Sung, "WenQuanYi Bitmap Song", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", serif;
+}
+.font-fang-song {
+  font-family: Baskerville, "Times New Roman", "Liberation Serif", STFangsong, FangSong, FangSong_GB2312, CWTEX\-F, serif;
+}
+.font-ming {
+  font-family: Georgia, "Nimbus Roman No9 L", "AR PL UMing CN", "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", PMingLiU, MingLiU, serif;
+}
+[ng-cloak],
+.ng-hide {
+  display: none !important;
+}
+.container {
+  max-width: none !important;
+  width: 380px !important;
+  position: relative;
+}
+.heading {
+  text-align: center;
+  margin: 50px -50px 0 -50px;
+}
+.heading h1 {
+  text-align: center;
+  font-size: 72px;
+  color: #C6371D;
+}
+.heading h2 {
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 30px;
+  color: #888;
+}
+.heading h2 b {
+  color: #444;
+  font-weight: normal;
+}
+.login-box .tab {
+  display: block;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  color: #428BCA;
+  background: #eee;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+.login-box .tab:hover {
+  background: white;
+}
+.login-box .tab:nth-child(1) {
+  border-right: 1px solid #ccc;
+}
+.login-box .tab.active {
+  cursor: default;
+  color: #444;
+  background: white;
+  border-bottom: 1px solid white;
+  text-decoration: none;
+}
+form.step {
+  width: 350px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background: white;
+  padding: 25px;
+  padding-bottom: 10px;
+  box-shadow: 0 0 7px #ccc;
+}
+form.step .input-group input,
+form.step .input-group-btn .btn,
+form.step button {
+  border-radius: 3px;
+}
+form.step input.form-control {
+  border-radius: 3px;
+}
+form.step .help-block {
+  font-size: 12px;
+  color: #aaa;
+  padding-left: 3px;
+}
+form.step .errors {
+  color: #C6371D;
+  float: right;
+  display: none;
+}
+form.step .errors:after {
+  font-family: 'Glyphicons Halflings';
+  content: "\e101";
+  font-size: 14px;
+}
+form.step .errors span {
+  font-size: 12px;
+  float: left;
+  margin: 2px 3px 0;
+}
+form.step .has-error > .errors {
+  display: block;
+}
+form.step .has-error > .errors .error {
+  display: none;
+}
+form.step .has-error > .errors .error:first-child {
+  display: block;
+}
+form.step .form-control-feedback {
+  display: none;
+  float: right;
+  margin: -30px 15px 0 0;
+  pointer-events: none;
+}
+form.step .form-control-feedback.loading {
+  margin-top: -38px;
+}
+form.step .has-success i.glyphicon-ok {
+  display: block;
+}
+form.step .is-loading .loading {
+  display: block;
+}
+form.step .is-loading .glyphicon-ok {
+  display: none!important;
+}
+form.step label {
+  font-weight: normal;
+}
+form.step button.btn-block {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  border-bottom-width: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+form.step button.btn-block.register {
+  margin-top: 0px;
+}
+form.step .btn img {
+  height: 21px;
+}
+form.step hr {
+  margin: 25px 0;
+}
+form.step .hr-text {
+  text-align: center;
+  height: 0px;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: -12px;
+}
+form.step .hr-text span {
+  display: inline-block;
+  background: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #888;
+}
+.alert {
+  font-size: 13px;
+  border-radius: 0px;
+}
+.alert.alert-warning {
+  border-color: #F5CE7C;
+}
+.alert.alert-success {
+  border-color: #90CB5D;
+}

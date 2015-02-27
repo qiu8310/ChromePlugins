@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf8">
+<title>Fantasy</title>
+
+  <!-- bower:css -->
+  <link rel="stylesheet" href="../../vendors/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+  <link rel="stylesheet" type="text/css" href="css/menu.css" />
+</head>
+<body>
+
+
+// page
+// browser
+// tools
+<div id="wrapper">
+	<div id="title">Fantasy</div>
+	<ul id="links">
+		<li id="btnPageLoadTime">页面加载时间</li>
+		<li id="btnPageQRCode">页面二维码</li>
+		<li id="btnPageCookieManage">页面Cookie管理</li>
+		<li id="btnPagePostManage">页面Post管理</li>
+		<!-- <li class="disabled">此标签被禁用</li> -->
+		<li class="separator"></li>
+		<li id="btnClearBrowerData">清除浏览器数据</li>
+		<li id="btnShowGoogleUrl">Google URL</li>
+		<li id="btnClearDNS">清除 DNS 缓存</li>
+		<li id="btnSaveTabs">保存标签页，以后再看</li>
+		<li class="separator"></li>
+		<!-- http://tool.css-js.com/htmlchar.html -->
+		<li>代码压缩</li>
+		<li>HTML殊死符号对照表</li>
+		<li>Base64编码</li>
+		<li>URL编码解码</li>
+		<li>时间戳转换</li>
+
+		<li class="separator"></li>
+		<li>注入JS工具脚本</li>
+		<li id="btnOption">选项</li> <!-- 启用 liveload，浏览器和当前系统程序通信 -->
+	</ul>
+</div>
+
+<div id="pages" style="display:none;">
+	<a class="btnBack" href="#">Back</a>
+
+	<div id="pagePageQRCode" style="display:none;">
+		<div id="qrdata">
+			<input type="text" value="https://developers.google.com/chart/infographics/docs/qr_codes">
+		</div>
+		<!-- https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|4&chl=abc -->
+		<div id="qrcode"><img style="-webkit-user-select:none"></div>
+	</div>
+
+
+	<div id="pageClearBrowerData" style="display:none;">
+		<ul>
+			<li>
+				<label><input type="checkbox" name="Cache">Cache</label>
+				<span><label></label><input type="range" value=1 min=1 max=9 step=1></span>
+			</li>
+			<li>
+				<label><input type="checkbox" name="History">History</label>
+				<span><label></label><input type="range" value=1 min=1 max=9 step=1></span>
+			</li>
+			<li>
+				<label><input type="checkbox" name="Cookies">Cookies</label>
+				<span><label></label><input type="range" value=1 min=1 max=9 step=1></span>
+			</li>
+		</ul>
+		<div class="btn">清除</div>
+	</div>
+</div>
+
+<!-- build:js scripts/vendors.js -->
+<!-- bower:js -->
+<script src="../../vendors/jquery/dist/jquery.js"></script>
+<script src="../../vendors/angular/angular.js"></script>
+<script src="../../vendors/angular-animate/angular-animate.js"></script>
+<script src="../../vendors/lodash/lodash.js"></script>
+<script src="../../vendors/bootstrap/dist/js/bootstrap.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+
+<!--<script type="text/javascript" src="js/menu.js"></script>-->
+</body>
+</html>

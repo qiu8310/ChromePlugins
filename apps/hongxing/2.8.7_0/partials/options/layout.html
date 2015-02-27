@@ -1,0 +1,151 @@
+<!--suppress HtmlUnknownAnchorTarget -->
+<div class="row">
+    <div class="nav-col col-xs-3">
+        <h1>
+            {{'app'|translate}}
+            <small>{{ ver }}</small>
+        </h1>
+
+        <div class="head-dropdown">
+            <a class="head btn btn-default btn-xs"
+               data-animation="am-flip-x"
+               data-placement="bottom-right"
+               bs-dropdown="dropdown">
+                {{'options.layout.menu'|translate}}
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </a>
+        </div>
+
+        <hr>
+
+        <div ng-controller="ProfileController">
+            <div class="profile panel panel-default">
+                <div class="panel-body">
+                    <div class="avatar">
+                        <div class="image" style="background-image:url({{avatarUrl()}});"></div>
+                    </div>
+
+                    <div class="info">
+                        <span class="name" title="{{ $root.user.profile.name }}">
+                            {{ $root.user.profile.name }}
+                        </span>
+
+                        <ul class="badges">
+                            <li>
+                                <i class="signal level{{stabilityLevel()}}"
+                                   bs-tooltip="{title: ('options.layout.line_usable'|translate)+': '+ ($root.averageStability | renderPercent)}"
+                                        data-placement="right"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <table class="table">
+                    <thead></thead> <!--thead必须有，没有这个就没有每一行之间的横线了-->
+                    <tr>
+                        <td class="key">
+                            {{'options.layout.service'|translate}}
+                        </td>
+                        <td class="value">
+                            <div ng-if="$root.isVIP()">
+                                <span class="text-muted">{{ 'options.layout.vip_expire.t1' | translate }}</span>
+                                <span class="text-success"
+                                      bs-tooltip="{title: ('options.layout.vip_tooltip'|translate) }">
+                                    {{ VIPLeft | renderLeftTime }}
+                                </span>
+                                <span class="text-muted">{{ 'options.layout.vip_expire.t2' | translate }}</span>
+                            </div>
+
+                            <div ng-if="!$root.isVIP() && !$root.isDue()"
+                                 class="text-danger"
+                               translate="options.layout.not_vip"></div>
+
+                            <div ng-if="!$root.isVIP() && $root.isDue()"
+                                 class="text-danger"
+                                translate="options.layout.expire"></div>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="panel-footer">
+                    <a ng-href="{{$root.payUrl}}" target="_blank" class="btn btn-primary btn-block">
+                        <span ng-if="$root.isVIP() || $root.isDue()" translate="options.layout.extend_vip"></span>
+                        <span ng-if="!$root.isVIP() && !$root.isDue() " translate="options.layout.open_vip"></span>
+                    </a>
+                </div>
+
+
+            </div>
+        </div> <!--end of profile controller-->
+
+
+        <div class="nav-menu list-group">
+            <a href="#/domains" class="list-group-item" ng-class="{selected: 'domains' == currentState}"
+                    translate="options.layout.domain_list">
+            </a>
+            <a href="#/trades" class="list-group-item"
+               ng-class="{selected: 'trades' == currentState}"
+               translate="options.layout.order_history">
+            </a>
+            <a href="#/invitations" class="list-group-item" ng-class="{selected: 'invitations' == currentState}">
+                {{'options.layout.invitation'|translate}}
+                <i class="fa fa-gift" style="font-size: 14px; margin-left: 5px;"></i>
+
+                <span class="badge" ng-show="newInvitationCount">
+                    {{newInvitationCount}}
+                </span>
+            </a>
+        </div>
+
+        <div class="nav-menu list-group">
+            <a href="#/blog" class="list-group-item"
+               ng-class="{selected: 'blog' == currentState}"
+               translate="options.layout.blog">
+            </a>
+            <a href="http://honx.in/guide?account={{$root.user.profile.name}}"
+               class="list-group-item" target="_blank"
+               translate="options.layout.guide">
+            </a>
+        </div>
+
+
+    </div>
+    <div class="main-col col-xs-9">
+
+        <div class="app-alerts animated bounce" ng-if="'blog' != currentState">
+
+            <div ng-if="!$root.isVIP() && !$root.isDue()" class="app-alert alert alert-info">
+                <i class="glyphicon glyphicon-send pull-right" style="font-size:72px; margin: 10px 20px 10px 10px;"></i>
+                <p>
+                    {{'options.alerts.end_free'|translate}}<br>
+                    {{'options.alerts.two_ways_to_open_vip'|translate}}
+                </p>
+                <div style="margin-top: 10px;">
+                    <a href="{{payUrl}}" target="_blank" class="btn btn-primary" style="margin-right: 10px;">
+                        {{'options.alerts.buy_vip'|translate}}
+                        <small>{{'options.alerts.watch_price'|translate}}</small>
+                    </a>
+                    <a href="#/invitations" class="btn btn-default">
+                        {{'options.alerts.invite_friends'|translate}}
+                        <small>{{'options.alerts.watch_detail'|translate}}</small>
+                    </a>
+                </div>
+
+                <div ng-if="$root.freeDomains.length">
+                    <hr>
+                    {{'options.alerts.free_privilege'|translate}}<br>
+                    <span ng-repeat="name in $root.freeDomains">{{ name }}，</span>
+                    <br> {{'options.alerts.enjoy_free'|translate}}
+                </div>
+
+            </div>
+
+            <div ng-if="$root.isDue()" class="app-alert alert alert-danger">
+                <i class="glyphicon glyphicon-usd pull-right" style="font-size:32px; margin: -3px 10px 0 0;"></i>
+                <p translate="options.alerts.expire"></p>
+            </div>
+        </div>
+
+        <div ui-view></div>
+    </div>
+</div>

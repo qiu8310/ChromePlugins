@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+<meta charset="utf-8">
+<title>webvpn</title>
+
+<link rel="stylesheet" href="main.css" type="text/css" media="screen" />   
+<script src="jquery.js"></script> 
+</head> 
+
+<body id="settingpage">
+
+<div id="mydebug"></div>
+ 
+
+<div  class="container" id="wtform"> 
+ 
+  <div class="row">
+    <div class="span3"></div>
+    <div class="span6"> 
+     <fieldset>
+        <legend style="font-size:12px">强制走SSLspeedy(force to sslspeedy) one domain per line <span id="hint2" class="hide label label-important"></span> </legend>
+        
+        <div   id="blkdmsetingdiv">
+          <textarea  style="font-size:10px;width:97%" placeholder="one domain per line一行一个域名"  rows="14" id="localbldomain"></textarea>
+         </div>  
+         <div>
+          <select id="globalssl" style="font-size:10px;width:100%">
+              <option value="0">自定义域名方式(默认)</option>
+              <option value="1">全局方式</option>
+            </select>
+          </div>
+          <div>
+            <button id="domainslistchangebutton" style="width:100%" disabled="disabled" class="btn btn-primary">保存设置</button>
+          </div>
+          <div>  
+            <hr />
+          <ol>
+          <li>abc.com 包含 ***.abc.com,所以添加的时候无需星号; 
+          <li>如果出现登陆提示框，点击取消即可，如果点击取消再次出现，请输入你的VPN用户名和密码。
+            <li>图标变绿表示当前网址走插件,请不要再发邮件问了。
+          </ol>
+        </div> 
+        </fieldset> 
+     </div> 
+     <div class="span3"></div>  
+  </div>
+  <div class="row">
+    <div class="span3"></div> 
+    <div class="span6"> 
+      <fieldset>
+      
+      </fieldset>
+    </div> 
+
+    <div class="span3"></div>   
+  </div>  
+ 
+</div>
+
+<script src="myscript.js"></script>    
+</body>
+</html>

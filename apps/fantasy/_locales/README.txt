@@ -1,0 +1,1 @@
+¹Ù·½ÎÄµµ£º http://developer.chrome.com/extensions/i18n.html

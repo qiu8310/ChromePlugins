@@ -1,0 +1,14 @@
+{
+	"ExtName" : {
+		"message": "Fantasy",
+		"description": "The name of the extension"
+	},
+  "ExtKey" : {
+    "message": "fantasy",
+    "description": "The key of the extension"
+  },
+  "ExtDescription": {
+    "message": "Extension that help you development and entertainment",
+    "description": "The description of the extension"
+  }
+}

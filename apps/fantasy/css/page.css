@@ -1,0 +1,158 @@
+/* 设置浏览器的 scrollbar */
+/* height 不能设置成 auto，因为还有 横向 scrollbar */
+::-webkit-scrollbar {
+	/*
+	width: 6px;
+	height: 6px;
+	background: transparent;
+	*/
+}
+::-webkit-scrollbar-track-piece{ /* 和 -webkit-scrollbar 类似 */ }
+
+::-webkit-scrollbar-thumb {
+	/*
+	background: rgba(0, 0, 0, 0.7);
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	*/
+}
+::-webkit-scrollbar-thumb:vertical 		{ }
+::-webkit-scrollbar-thumb:horizontal	{ }
+
+/* 控制 iframe scrollbar */
+iframe::-webkit-scrollbar 				{ }
+:not(iframe)::-webkit-scrollbar 		{ }
+
+
+
+
+/* html5rock 的打印样式 （它自带的打印太难看了） */
+@media print {
+	.page article.tutorial .outline_nav_toggle {
+		display: none;
+	}
+	.page article.tutorial,
+	.page section.disqus,
+	.page section.cc {
+		margin-left: 0;
+	}
+}
+
+
+/* http://tutorials.jenkov.com/svg 上的教程，去掉广告 */
+#mainDiv > h1 + table {
+	display: none;
+}
+body > #google_image_div {
+	display: none;
+}
+
+
+
+.ext-dialog .no-select {
+	-webkit-user-select: none;
+			user-select: none;
+}
+.ext-dialog {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	min-width: 300px;
+	/*height: 300px;*/
+	display: block;
+	font-size: 100%;
+	border: 1px solid gray;
+	border-radius: 4px;
+	box-shadow: 1px 2px 4px rgba(0,0,0,.5);
+}
+.ext-dialog .ext-header {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 30px;
+	background: -webkit-linear-gradient(top, rgba(140,140,140,0.4) 0%,rgba(140,140,140,0.4) 1%,rgba(140,140,140,0.8) 100%);
+	background: linear-gradient(to bottom, rgba(140,140,140,0.4) 0%,rgba(140,140,140,0.4) 1%,rgba(140,140,140,0.8) 100%);
+}
+.ext-dialog .ext-header h1 {
+	display: block;
+	position: absolute;
+	left: 10px;
+	right: 35px;
+	height: 30px;
+	line-height: 200%;
+	overflow: hidden;
+	color: white;
+	font-size: 1.1em;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	background: transparent;
+}
+.ext-dialog .ext-header .ext-icon-close {
+	display: block;
+	position: absolute;
+	top: 3px;
+	right: 10px;
+	width: 24px;
+	height: 24px;
+	text-align: center;
+	font-size: 1.3em;
+	line-height: 120%;
+	font-weight: bold;
+	color: white;
+	cursor: pointer;
+	box-shadow: inset -1px -1px #494949;
+	border-radius: 12px;
+	text-decoration: none;
+}
+.ext-dialog .ext-header .ext-icon-close:hover {
+	box-shadow: inset 1px 1px #494949;
+	text-decoration: none;
+}
+.ext-dialog .ext-body {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0 10px 10px 10px;
+	background-color: rgba(140,140,140,0.8);
+}
+.ext-dialog .ext-body .ext-wrap {
+	box-sizing: border-box;
+	background: white;
+	border-radius: 2px;
+	overflow: hidden;
+	padding: 20px 25px;
+	/*height: 258px;*/
+}
+.ext-dialog .ext-btn {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-block;
+	padding: 4px 8px;
+	box-size: border-box;
+	border-radius: 4px;
+	color: #333;
+	cursor: pointer;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#DDD));
+	background: linear-gradient(top, #FFF, #DDD);
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, .5);
+	border: 1px solid #999;
+	border-radius: 5px;
+
+	margin-left: 15px;
+}
+.ext-dialog .ext-btn:hover {
+	color:#000;
+	border-color:#666;
+}
+.ext-dialog .ext-wrap .ext-content {
+	line-height: 1.4;
+
+}
+.ext-dialog .ext-wrap .ext-btns {
+	margin-top: 20px;
+	text-align: right;
+}
+

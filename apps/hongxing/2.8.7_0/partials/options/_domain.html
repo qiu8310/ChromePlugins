@@ -1,0 +1,33 @@
+<div class="domain" ng-switch="$root.user.role">
+
+    <div ng-switch-when="user" class="locked" title="{{'options.domain.locked_title'|translate}}">
+        <span class="glyphicon glyphicon-lock"></span>
+        <span class="name form-control-static">{{ model.name }}</span>
+    </div>
+
+    <form ng-switch-when="VIP" ng-submit="update()">
+
+        <div class="form-group" ng-if="!editing">
+            <a ng-click="remove()" href="" class="remove glyphicon glyphicon-trash" title="{{'options.domain.delete_domain'|translate}}"></a>
+            <span ng-click="edit()" class="name form-control-static">
+                {{ model.name }}
+                <span class="glyphicon glyphicon-pencil"></span>
+            </span>
+        </div>
+
+        <div class="input-group" ng-if="editing">
+            <input ng-model="edition.name"
+                   focus-bind="focusInput"
+                   ui-keydown="{esc:'edit(false)'}"
+                   type="text" class="form-control">
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-default" title="{{'common.ok'|translate}}">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <button ng-click="edit(false)" type="button" class="btn btn-default" title="{{'common.cancel'|translate}}">
+                    <span class="glyphicon glyphicon-ban-circle"></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

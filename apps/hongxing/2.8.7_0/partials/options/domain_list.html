@@ -1,0 +1,47 @@
+<div class="page-header">
+    <h2>{{'options.domain_list.title'|translate}}</h2>
+
+    <div class="sort dropdown right">
+        <a class="btn btn-link btn-xs"
+           data-animation="am-flip-x"
+           data-placement="bottom-right" bs-dropdown="dropdown">
+            {{sorter|rendSorter}}
+            <span class="caret"></span>
+        </a>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+
+<form class="add-domain" ng-submit="addDomain()">
+    <div class="input-group">
+        <input type="text" class="form-control"
+               placeholder="{{'options.domain_list.add_domain_placeholder'|translate}}"
+               ng-change="clearError()"
+               ng-disabled="!$root.isVIP()"
+               ng-model="domainToAdd">
+
+        <div class="input-group-btn">
+            <input type="submit" value="{{'options.domain_list.add_domain'|translate}}" class="btn btn-default" ng-disabled="!$root.isVIP()">
+        </div>
+    </div>
+
+    <div class="help-block">
+        <span ng-if="!error">{{'options.domain_list.help_block_text'|translate}}</span>
+        <span ng-if="error" class="text-danger">
+            <i class="glyphicon glyphicon-exclamation-sign"></i>
+            {{error}}
+        </span>
+    </div>
+</form>
+
+<img src="/img/loading-bars-gray.svg" style="margin: 0 auto; display: block;" ng-if="domains.length==0"/>
+
+<div class="domains">
+    <div class="domain-wrapper" ng-repeat="domain in $root.domains | orderBy: sorter"
+         ng-if="!domain._deleted">
+        <domain model="domain"></domain>
+    </div>
+    <div style="clear:both"></div>
+</div>

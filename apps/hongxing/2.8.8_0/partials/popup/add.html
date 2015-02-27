@@ -1,0 +1,18 @@
+<div class="add page">
+    <p translate="popup.add_title"></p>
+
+    <form>
+        <input class="domain form-control" name="domain" type="text"
+               ng-model="name">
+        <span class="text-muted" translate="popup.include_sub_domain"></span>
+
+        <div class="pull-right btn-group">
+            <button type="button" class="cancel btn btn-sm btn-default"
+                    ng-click="routeToMenu()" translate="common.cancel">
+            </button>
+            <button type="submit" class="add btn btn-sm btn-success"
+                ng-click="addDomain()" translate="common.ok">
+            </button>
+        </div>
+    </form>
+</div>

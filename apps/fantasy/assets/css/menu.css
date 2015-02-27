@@ -1,0 +1,210 @@
+@charset "UTF-8";
+/*
+SASS 类型转化
+
+http://hugogiraudel.com/2014/01/27/casting-types-in-sass/
+
+*/
+/*
+sass {
+  cast: to-number("-15");    // -15
+  cast: to-number("-1");     // -1
+  cast: to-number("-.5");    // -.5
+  cast: to-number("-0");     // 0
+  cast: to-number("0");      // 0
+  case: to-number(".10");    // 0.1
+  cast: to-number("1");      // 1
+  cast: to-number("1.5");    // 1.5
+  cast: to-number("10.");    // 10
+  cast: to-number("12.380"); // 12.38
+  cast: to-number("42");     // 42
+  cast: to-number("1337");   // 1337
+
+  cast: to-number("-10px");  // -10px
+  cast: to-number("20em");   // 20em
+  cast: to-number("30ch");   // 30ch
+
+  cast: to-number("1fail");  // Error
+  cast: to-number("string"); // Error
+}
+*/
+/*
+  得到 SASS 里的一个数字的单位，如 %, px, em 等单位
+
+  NOTE 直接用 unit 函数，当没单位时 unit 会返回空字符串
+
+  @function number-unit($number) {
+    $number-str: to-string($number);
+
+    $unit: false;
+
+    @for $i from 1 through length($number-suffixes) {
+      $suffix: nth($number-suffixes, $i);
+
+      @if str-index($number-str, $suffix) {
+        $unit: $suffix;
+      }
+    }
+
+    @return $unit;
+  }
+
+*/
+/*
+  判断 SASS 里的一个数字是否含有单位
+
+  NOTE 直接用 unitless 函数，没单位时返回 true
+
+  @function number-has-unit($number) {
+
+    @return if(number-unit($number) == false , false, true);
+
+  }
+*/
+/*
+  去掉一个数字的单位
+*/
+/*
+  4 clamped to 1-3 equals 3
+  -5 clamped to 1-10 equals 1
+  42 clamped to 10-100 equals 42
+
+  http://hugogiraudel.com/2013/08/12/sass-functions/#section-2
+*/
+/*
+  Unit conversion
+
+  http://hugogiraudel.com/2013/08/12/sass-functions/#section-3
+  http://codepen.io/HugoGiraudel/pen/rdgse
+*/
+/*
+selector-modifier($index $modifier $selector, ...)
+
+root-modifier($selector)
+
+parent-modifier($selector)
+
+
+$modifier: replace prepend prefix suffix delete append
+
+
+@example:
+
+a {
+  @include selector-modifier(1 prepand '.en') {
+    color: red;
+  }
+}
+
+=> .en a { color: red; }
+
+*/
+/*
+
+.block {}
+.block__element {}
+.block--modifier {}
+
+.person {}
+.person__hand {}
+.person--female {}
+.person--female__hand {}
+.person__hand--left {}
+
+=========================================
+example:
+
+@include B(block) {
+  color: #000;
+
+  @include M(red) {
+    color: red;
+
+    @include E(header) {
+      position: absolute;
+      top: 0;
+    }
+
+    @include BE(header) {
+      margin: 0;
+
+      @include BE(back) {
+        padding: 0;
+      }
+    }
+  }
+}
+
+=> compile to:
+
+.block {
+  color: #000;
+}
+.block--red {
+  color: red;
+}
+.block--red__header {
+  position: absolute;
+  top: 0;
+}
+.block--red .block__header {
+  margin: 0;
+}
+.block--red .block__header .block__back {
+  padding: 0;
+}
+
+
+*/
+.mobile, .no-mobile, .tablet, .no-tablet, .desktop, .no-desktop {
+  display: none; }
+
+@media only screen and (max-width: 539px) {
+  .mobile {
+    display: block; } }
+
+@media only screen and (min-width: 540px) {
+  .no-mobile {
+    display: block; } }
+
+@media only screen and (min-width: 540px) and (max-width: 899px) {
+  .tablet {
+    display: block; } }
+
+@media only screen and (max-width: 539px), only screen and (min-width: 900px) {
+  .no-tablet {
+    display: block; } }
+
+@media only screen and (min-width: 900px) {
+  .desktop {
+    display: block; } }
+
+@media only screen and (max-width: 899px) {
+  .no-desktop {
+    display: block; } }
+
+/*
+  Creates a visual triangle. Mixin takes ($size, $color, $direction)
+
+  The $size argument can take one or two values—width height.
+
+  The $color argument can take one or two values—foreground-color background-color.
+
+  $direction: up, down, left, right, up-right, up-left, down-right, down-left
+
+  @include triangle(12px, gray, down);
+  @include triangle(12px 6px, gray lavender, up-left);
+*/
+body {
+  color: yellow;
+  height: 128px;
+  background-image: url('../images/gen/sp-sbd3c955164.png');
+  background-size: 64px 90px;
+  background-position: 0 0;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  display: -webkit-flex;
+  display: flex; }
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1lbnUuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGtCQUFpQjtBQUNqQjs7Ozs7R0FLRTtBQUNGOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0dBc0JFO0FBQ0Y7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztHQXFCRTtBQUNGOzs7Ozs7Ozs7O0dBVUU7QUFDRjs7R0FFRTtBQUNGOzs7Ozs7R0FNRTtBQUNGOzs7OztHQUtFO0FBQ0Y7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztHQXFCRTtBQUNGOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztHQXdERTtBQUNGO0VBQ0UsZUFBYyxFQUFFOztBQUVsQjtFQUNFO0lBQ0UsZ0JBQWUsRUFBRSxFQUFFOztBQUV2QjtFQUNFO0lBQ0UsZ0JBQWUsRUFBRSxFQUFFOztBQUV2QjtFQUNFO0lBQ0UsZ0JBQWUsRUFBRSxFQUFFOztBQUV2QjtFQUNFO0lBQ0UsZ0JBQWUsRUFBRSxFQUFFOztBQUV2QjtFQUNFO0lBQ0UsZ0JBQWUsRUFBRSxFQUFFOztBQUV2QjtFQUNFO0lBQ0UsZ0JBQWUsRUFBRSxFQUFFOztBQUV2Qjs7Ozs7Ozs7Ozs7R0FXRTtBQUNGO0VBQ0UsZUFBYztFQUNkLGVBQWM7RUFDZCwyREFBMEQ7RUFDMUQsNEJBQTJCO0VBQzNCLDBCQUF5QjtFQUN6Qix1QkFBc0I7RUFDdEIsYUFBWTtFQUNaLGNBQWE7RUFDYix1QkFBYztFQUFkLGVBQWMsRUFBRSIsImZpbGUiOiJtZW51LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIkBjaGFyc2V0IFwiVVRGLThcIjtcbi8qXG5TQVNTIOexu+Wei+i9rOWMllxuXG5odHRwOi8vaHVnb2dpcmF1ZGVsLmNvbS8yMDE0LzAxLzI3L2Nhc3RpbmctdHlwZXMtaW4tc2Fzcy9cblxuKi9cbi8qXG5zYXNzIHtcbiAgY2FzdDogdG8tbnVtYmVyKFwiLTE1XCIpOyAgICAvLyAtMTVcbiAgY2FzdDogdG8tbnVtYmVyKFwiLTFcIik7ICAgICAvLyAtMVxuICBjYXN0OiB0by1udW1iZXIoXCItLjVcIik7ICAgIC8vIC0uNVxuICBjYXN0OiB0by1udW1iZXIoXCItMFwiKTsgICAgIC8vIDBcbiAgY2FzdDogdG8tbnVtYmVyKFwiMFwiKTsgICAgICAvLyAwXG4gIGNhc2U6IHRvLW51bWJlcihcIi4xMFwiKTsgICAgLy8gMC4xXG4gIGNhc3Q6IHRvLW51bWJlcihcIjFcIik7ICAgICAgLy8gMVxuICBjYXN0OiB0by1udW1iZXIoXCIxLjVcIik7ICAgIC8vIDEuNVxuICBjYXN0OiB0by1udW1iZXIoXCIxMC5cIik7ICAgIC8vIDEwXG4gIGNhc3Q6IHRvLW51bWJlcihcIjEyLjM4MFwiKTsgLy8gMTIuMzhcbiAgY2FzdDogdG8tbnVtYmVyKFwiNDJcIik7ICAgICAvLyA0MlxuICBjYXN0OiB0by1udW1iZXIoXCIxMzM3XCIpOyAgIC8vIDEzMzdcblxuICBjYXN0OiB0by1udW1iZXIoXCItMTBweFwiKTsgIC8vIC0xMHB4XG4gIGNhc3Q6IHRvLW51bWJlcihcIjIwZW1cIik7ICAgLy8gMjBlbVxuICBjYXN0OiB0by1udW1iZXIoXCIzMGNoXCIpOyAgIC8vIDMwY2hcblxuICBjYXN0OiB0by1udW1iZXIoXCIxZmFpbFwiKTsgIC8vIEVycm9yXG4gIGNhc3Q6IHRvLW51bWJlcihcInN0cmluZ1wiKTsgLy8gRXJyb3Jcbn1cbiovXG4vKlxuICDlvpfliLAgU0FTUyDph4znmoTkuIDkuKrmlbDlrZfnmoTljZXkvY3vvIzlpoIgJSwgcHgsIGVtIOetieWNleS9jVxuXG4gIE5PVEUg55u05o6l55SoIHVuaXQg5Ye95pWw77yM5b2T5rKh5Y2V5L2N5pe2IHVuaXQg5Lya6L+U5Zue56m65a2X56ym5LiyXG5cbiAgQGZ1bmN0aW9uIG51bWJlci11bml0KCRudW1iZXIpIHtcbiAgICAkbnVtYmVyLXN0cjogdG8tc3RyaW5nKCRudW1iZXIpO1xuXG4gICAgJHVuaXQ6IGZhbHNlO1xuXG4gICAgQGZvciAkaSBmcm9tIDEgdGhyb3VnaCBsZW5ndGgoJG51bWJlci1zdWZmaXhlcykge1xuICAgICAgJHN1ZmZpeDogbnRoKCRudW1iZXItc3VmZml4ZXMsICRpKTtcblxuICAgICAgQGlmIHN0ci1pbmRleCgkbnVtYmVyLXN0ciwgJHN1ZmZpeCkge1xuICAgICAgICAkdW5pdDogJHN1ZmZpeDtcbiAgICAgIH1cbiAgICB9XG5cbiAgICBAcmV0dXJuICR1bml0O1xuICB9XG5cbiovXG4vKlxuICDliKTmlq0gU0FTUyDph4znmoTkuIDkuKrmlbDlrZfmmK/lkKblkKvmnInljZXkvY1cblxuICBOT1RFIOebtOaOpeeUqCB1bml0bGVzcyDlh73mlbDvvIzmsqHljZXkvY3ml7bov5Tlm54gdHJ1ZVxuXG4gIEBmdW5jdGlvbiBudW1iZXItaGFzLXVuaXQoJG51bWJlcikge1xuXG4gICAgQHJldHVybiBpZihudW1iZXItdW5pdCgkbnVtYmVyKSA9PSBmYWxzZSAsIGZhbHNlLCB0cnVlKTtcblxuICB9XG4qL1xuLypcbiAg5Y675o6J5LiA5Liq5pWw5a2X55qE5Y2V5L2NXG4qL1xuLypcbiAgNCBjbGFtcGVkIHRvIDEtMyBlcXVhbHMgM1xuICAtNSBjbGFtcGVkIHRvIDEtMTAgZXF1YWxzIDFcbiAgNDIgY2xhbXBlZCB0byAxMC0xMDAgZXF1YWxzIDQyXG5cbiAgaHR0cDovL2h1Z29naXJhdWRlbC5jb20vMjAxMy8wOC8xMi9zYXNzLWZ1bmN0aW9ucy8jc2VjdGlvbi0yXG4qL1xuLypcbiAgVW5pdCBjb252ZXJzaW9uXG5cbiAgaHR0cDovL2h1Z29naXJhdWRlbC5jb20vMjAxMy8wOC8xMi9zYXNzLWZ1bmN0aW9ucy8jc2VjdGlvbi0zXG4gIGh0dHA6Ly9jb2RlcGVuLmlvL0h1Z29HaXJhdWRlbC9wZW4vcmRnc2VcbiovXG4vKlxuc2VsZWN0b3ItbW9kaWZpZXIoJGluZGV4ICRtb2RpZmllciAkc2VsZWN0b3IsIC4uLilcblxucm9vdC1tb2RpZmllcigkc2VsZWN0b3IpXG5cbnBhcmVudC1tb2RpZmllcigkc2VsZWN0b3IpXG5cblxuJG1vZGlmaWVyOiByZXBsYWNlIHByZXBlbmQgcHJlZml4IHN1ZmZpeCBkZWxldGUgYXBwZW5kXG5cblxuQGV4YW1wbGU6XG5cbmEge1xuICBAaW5jbHVkZSBzZWxlY3Rvci1tb2RpZmllcigxIHByZXBhbmQgJy5lbicpIHtcbiAgICBjb2xvcjogcmVkO1xuICB9XG59XG5cbj0+IC5lbiBhIHsgY29sb3I6IHJlZDsgfVxuXG4qL1xuLypcblxuLmJsb2NrIHt9XG4uYmxvY2tfX2VsZW1lbnQge31cbi5ibG9jay0tbW9kaWZpZXIge31cblxuLnBlcnNvbiB7fVxuLnBlcnNvbl9faGFuZCB7fVxuLnBlcnNvbi0tZmVtYWxlIHt9XG4ucGVyc29uLS1mZW1hbGVfX2hhbmQge31cbi5wZXJzb25fX2hhbmQtLWxlZnQge31cblxuPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cbmV4YW1wbGU6XG5cbkBpbmNsdWRlIEIoYmxvY2spIHtcbiAgY29sb3I6ICMwMDA7XG5cbiAgQGluY2x1ZGUgTShyZWQpIHtcbiAgICBjb2xvcjogcmVkO1xuXG4gICAgQGluY2x1ZGUgRShoZWFkZXIpIHtcbiAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICAgIHRvcDogMDtcbiAgICB9XG5cbiAgICBAaW5jbHVkZSBCRShoZWFkZXIpIHtcbiAgICAgIG1hcmdpbjogMDtcblxuICAgICAgQGluY2x1ZGUgQkUoYmFjaykge1xuICAgICAgICBwYWRkaW5nOiAwO1xuICAgICAgfVxuICAgIH1cbiAgfVxufVxuXG49PiBjb21waWxlIHRvOlxuXG4uYmxvY2sge1xuICBjb2xvcjogIzAwMDtcbn1cbi5ibG9jay0tcmVkIHtcbiAgY29sb3I6IHJlZDtcbn1cbi5ibG9jay0tcmVkX19oZWFkZXIge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMDtcbn1cbi5ibG9jay0tcmVkIC5ibG9ja19faGVhZGVyIHtcbiAgbWFyZ2luOiAwO1xufVxuLmJsb2NrLS1yZWQgLmJsb2NrX19oZWFkZXIgLmJsb2NrX19iYWNrIHtcbiAgcGFkZGluZzogMDtcbn1cblxuXG4qL1xuLm1vYmlsZSwgLm5vLW1vYmlsZSwgLnRhYmxldCwgLm5vLXRhYmxldCwgLmRlc2t0b3AsIC5uby1kZXNrdG9wIHtcbiAgZGlzcGxheTogbm9uZTsgfVxuXG5AbWVkaWEgb25seSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDUzOXB4KSB7XG4gIC5tb2JpbGUge1xuICAgIGRpc3BsYXk6IGJsb2NrOyB9IH1cblxuQG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAobWluLXdpZHRoOiA1NDBweCkge1xuICAubm8tbW9iaWxlIHtcbiAgICBkaXNwbGF5OiBibG9jazsgfSB9XG5cbkBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG1pbi13aWR0aDogNTQwcHgpIGFuZCAobWF4LXdpZHRoOiA4OTlweCkge1xuICAudGFibGV0IHtcbiAgICBkaXNwbGF5OiBibG9jazsgfSB9XG5cbkBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG1heC13aWR0aDogNTM5cHgpLCBvbmx5IHNjcmVlbiBhbmQgKG1pbi13aWR0aDogOTAwcHgpIHtcbiAgLm5vLXRhYmxldCB7XG4gICAgZGlzcGxheTogYmxvY2s7IH0gfVxuXG5AbWVkaWEgb25seSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDkwMHB4KSB7XG4gIC5kZXNrdG9wIHtcbiAgICBkaXNwbGF5OiBibG9jazsgfSB9XG5cbkBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG1heC13aWR0aDogODk5cHgpIHtcbiAgLm5vLWRlc2t0b3Age1xuICAgIGRpc3BsYXk6IGJsb2NrOyB9IH1cblxuLypcbiAgQ3JlYXRlcyBhIHZpc3VhbCB0cmlhbmdsZS4gTWl4aW4gdGFrZXMgKCRzaXplLCAkY29sb3IsICRkaXJlY3Rpb24pXG5cbiAgVGhlICRzaXplIGFyZ3VtZW50IGNhbiB0YWtlIG9uZSBvciB0d28gdmFsdWVz4oCUd2lkdGggaGVpZ2h0LlxuXG4gIFRoZSAkY29sb3IgYXJndW1lbnQgY2FuIHRha2Ugb25lIG9yIHR3byB2YWx1ZXPigJRmb3JlZ3JvdW5kLWNvbG9yIGJhY2tncm91bmQtY29sb3IuXG5cbiAgJGRpcmVjdGlvbjogdXAsIGRvd24sIGxlZnQsIHJpZ2h0LCB1cC1yaWdodCwgdXAtbGVmdCwgZG93bi1yaWdodCwgZG93bi1sZWZ0XG5cbiAgQGluY2x1ZGUgdHJpYW5nbGUoMTJweCwgZ3JheSwgZG93bik7XG4gIEBpbmNsdWRlIHRyaWFuZ2xlKDEycHggNnB4LCBncmF5IGxhdmVuZGVyLCB1cC1sZWZ0KTtcbiovXG5ib2R5IHtcbiAgY29sb3I6IHllbGxvdztcbiAgaGVpZ2h0OiAxMjhweDtcbiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKCcuLi9pbWFnZXMvZ2VuL3NwLXNiZDNjOTU1MTY0LnBuZycpO1xuICBiYWNrZ3JvdW5kLXNpemU6IDY0cHggOTBweDtcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogMCAwO1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHdpZHRoOiAyNHB4O1xuICBoZWlnaHQ6IDI0cHg7XG4gIGRpc3BsYXk6IGZsZXg7IH1cbiJdfQ== */

@@ -1,0 +1,48 @@
+<form name="login" class="login step" ng-submit="doLogin()" novalidate>
+    <div class="form-group" ng-class="{'is-loading': checkingName}" form-state="login.name">
+        <div class="errors">
+            <span class="error" ng-if="login.name.$error.required" translate="login.errors.name_required"></span>
+            <span class="error" ng-if="login.name.$error.format" translate="login.errors.format"></span>
+            <span class="error" ng-if="login.name.$error.server" translate="login.errors.server"></span>
+            <span class="error" ng-if="login.name.$error.notExisted" translate="login.errors.notExisted"></span>
+
+        </div>
+        <label translate="login.account"></label>
+        <input name="name" class="form-control input-lg font-kai"
+               type="text" placeholder="{{'login.name_placeholder'|translate}}"
+               ng-model="name"
+               focus-bind="focuses.name"
+               ng-disabled="checkingName || submitting"
+               ng-blur="checkNameExistence()"
+               ng-change="clearFormValidity()"
+               ui-validate="{format: '$root.validateNameFormat($value)'}"
+               required
+            >
+        <i class="form-control-feedback glyphicon glyphicon-ok"></i>
+        <img class="form-control-feedback loading" src="/img/loading-bars-gray.svg" alt="loading"/>
+    </div>
+
+    <div class="form-group" form-state="login.password">
+        <div class="errors">
+            <span class="error" ng-if="login.password.$error.required">{{"login.errors.password_required"|translate}}</span>
+            <span class="error" ng-if="login.password.$error.minlength">{{"login.errors.minlength"|translate}}</span>
+            <span class="error" ng-if="login.password.$error.mismatch">{{"login.errors.mismatch"|translate}}</span>
+        </div>
+        <label translate="login.password"></label>
+        <input name="password" type="password" class="form-control input-lg font-kai"
+               placeholder="{{'login.password_placeholder'|translate}}"
+               ng-model="password"
+               focus-bind="focuses.password"
+               ng-disabled="submitting"
+               ng-change="clearFormValidity()"
+               required
+               ng-minlength="6">
+    </div>
+
+    <button type="submit" class="btn btn-block btn-primary btn-lg" ng-disabled="submitting">
+        <span ng-hide="submitting">{{'login.login'|translate}}</span>
+        <img src="/img/loading-bars.svg" alt="loading" ng-show="submitting"/>
+    </button>
+    <a ng-href="{{resetPasswordUrl}}" class="pull-right" target="_blank">{{'login.find_password'|translate}}</a>
+    <div class="clearfix"></div>
+</form>

@@ -1,0 +1,91 @@
+<div class="page-header">
+    <h2>{{'options.invitation.title'|translate}}</h2>
+    <div ng-hide="showInviterInput">
+        <span class="right text-muted" ng-show="inviter">
+            {{'options.invitation.my_inviter'|translate}}{{inviter}}
+        </span>
+        <span class="right text-muted" ng-hide="inviter">
+            {{'options.invitation.my_inviter'|translate}}
+            <a href="" ng-click="showInviterInput=true;focusInviterInput=true;" >
+                {{'options.invitation.not_set'|translate}}
+            </a>
+        </span>
+    </div>
+    <inviter-input manual-focus="focusInviterInput" ng-show="showInviterInput"></inviter-input>
+    <div class="clearfix"></div>
+</div>
+
+<div class="rules">
+    <div class="alert alert-success" style="font-size: 14px;">
+        <b>{{'options.invitation.invite_url'|translate}}</b>
+        <a ng-href="{{invite_url}}" target="_blank">{{invite_url}}</a>
+        <a href="http://blog.honx.in/free/" target="_blank" style="float:right;">
+            <small>{{'options.invitation.invite_skill'|translate}} >></small>
+        </a>
+    </div>
+
+    <hr>
+
+    <h3>
+        <b translate='options.invitation.prerequisites'></b>
+        <small translate="options.invitation.prerequisite_remark"></small>
+    </h3>
+    <ul class="steps">
+        <li>
+            <span class="label label-info">1</span>
+            <span translate="options.invitation.step1"></span>
+        </li>
+        <li>
+            <span class="label label-info">2</span>
+            <span translate="options.invitation.step2"></span>
+        </li>
+        <li>
+            <span class="label label-success">{{'options.invitation.reward'|translate}}</span>
+            <span translate="options.invitation.step3"></span>
+        </li>
+    </ul>
+
+</div>
+
+<table class="invitation table">
+    <thead>
+    <tr>
+        <th class="account" translate="options.invitation.receiver"></th>
+        <th class="time" translate="options.invitation.vip_status"></th>
+        <th class="action" translate="options.invitation.fetch_reward"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="text-muted" ng-show="$root.invitationList && !$root.invitationList.length">
+        <td colspan="3" translate="options.invitation.invite_no_one"></td>
+    </tr>
+    <tr ng-repeat="invitation in $root.invitationList" ng-switch='invitation.status'>
+        <td class="account">
+            {{ invitation.receiver | renderAccount }}
+            <span class="text-muted" ng-hide="invitation.sender | isMe">
+                （{{ invitation.sender | renderAccount }}{{'options.invitation.invite'|translate}}）
+            </span>
+        </td>
+        <td class="time" ng-switch-when="not_vip">
+            <span class="label label-default" translate="options.invitation.not_vip"></span>
+        </td>
+        <td class="time" ng-switch-when="not_monthly_vip">
+            <span class="label label-default" translate="options.invitation.not_monthly_vip"></span>
+        </td>
+        <td class="time" ng-switch-when="rewardable">
+            <span class="text-success" translate="options.invitation.rewardable"></span>
+        </td>
+        <td class="action" ng-switch-when="rewardable">
+            <button class="btn btn-xs btn-success" 
+                ng-show="invitation.can_fetch_reward"
+                ng-click="fetchInvitationReward(invitation)"
+                translate="options.invitation.fetch_10_day_vip">
+            </button>
+            <span class="text-success" ng-hide="invitation.can_fetch_reward" translate="options.invitation.rewarded">
+            </span>
+        </td>
+        <td class="action" ng-show="invitation.status != 'rewardable'">
+            <span class="text-muted" translate="options.invitation.not_rewardable"></span>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,24 @@
+{
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "browser_action": {
+      "default_background": "background.html",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+   },
+   "content_security_policy": "script-src 'self' https://sslauth.5bird.com ; object-src 'self' ",
+   "description": "secure and speed up your web connections.",
+   "icons": {
+      "128": "icon.png",
+      "16": "icon.png",
+      "48": "icon.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl0PAhi4byzew/VBbrvqLWZ2cRJyvPB688g8b0eMfXLoFw9UMMjmW/ITA7y+srXvjPtHMhlw/C1GyrkBdobbEm/U7dV6Zm2k8wX8hF3SSvfUY0l7QgB0C3WjwESOS572T33c6P0H64c+ABjtzAMMYwxA6rz9aaWUsZd2dTerqn+6YIsk1JGDCqGuLh3ZWGEJlbfR1PyabS17fmHOnHsU4nioZNSCTVBpMd6HuyF/1VtzVXTNgSf7H5ev5r8Ezco2SY7haaP5dhGVMS+6FKRAwn3Ys7KXEF/tcqMqmQ9CSWs9o9UGkpGw+n6/BMkRkL8n7kacXtLxfU4xm8D+BUH4XlwIDAQAB",
+   "manifest_version": 2,
+   "name": "SSLspeedy2",
+   "options_page": "settings.html",
+   "permissions": [ "proxy", "storage", "webRequest", "webRequestBlocking", "https://sslauth.5bird.com/*", "http://*.60in.com/*", "tabs", "\u003Call_urls>" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2.3.4"
+}

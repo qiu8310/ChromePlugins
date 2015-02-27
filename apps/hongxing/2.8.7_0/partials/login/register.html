@@ -1,0 +1,64 @@
+<form name="register" class="register step" ng-submit="doRegister()" novalidate>
+    <div class="form-group" ng-class="{'is-loading': checkingName}" form-state="register.name">
+        <div class="errors">
+            <span class="error" ng-if="register.name.$error.required">{{'login.errors.name_required'|translate}}</span>
+            <span class="error" ng-if="register.name.$error.format">{{'login.errors.format'|translate}}</span>
+            <span class="error" ng-if="register.name.$error.notTaken">{{'login.errors.notTaken'|translate}}</span>
+            <span class="error" ng-if="register.name.$error.server">{{'login.errors.server'|translate}}</span>
+        </div>
+        <label>{{'login.account'|translate}}</label>
+        <input name="name" class="form-control input-lg font-kai" type="text"
+               placeholder="{{'login.name_placeholder'|translate}}"
+               ng-model="name"
+               focus-bind="focuses.name"
+               ng-disabled="checkingName || submitting"
+               ng-blur="checkNameExistence()"
+               ng-change="clearNameValidity()"
+               ui-validate="{format: '$root.validateNameFormat($value)'}"
+               required
+               >
+        <i class="form-control-feedback glyphicon glyphicon-ok"></i>
+        <img class="form-control-feedback loading" src="/img/loading-bars-gray.svg" alt="loading"/>
+    </div>
+
+    <div class="form-group" form-state="register.password">
+        <div class="errors">
+            <span class="error" ng-if="register.password.$error.required">{{'login.errors.password_required'|translate}}</span>
+            <span class="error" ng-if="register.password.$error.minlength">{{'login.errors.minlength'|translate}}</span>
+        </div>
+        <label>{{'login.password'|translate}}</label>
+        <input name="password" class="form-control input-lg font-kai"
+               type="password"
+               ng-model="password"
+               focus-bind="focuses.password"
+               ng-disabled="submitting"
+               required
+               ng-minlength="6"
+               placeholder="{{'login.password_placeholder'|translate}}" >
+        <a class="form-control-feedback glyphicon glyphicon-ok"></a>
+    </div>
+
+    <div class="form-group" form-state="register.password2">
+        <div class="errors">
+            <span class="error" ng-if="register.password2.$error.required">{{'login.errors.password2_required'|translate}}</span>
+            <span class="error" ng-if="register.password2.$error.minlength">{{'login.errors.minlength'|translate}}</span>
+            <span class="error" ng-if="register.password2.$error.equals">{{'login.errors.password_not_same'|translate}}</span>
+        </div>
+        <label>{{'login.confirm_password'|translate}}</label>
+        <input name="password2" class="form-control input-lg font-kai"
+               type="password"
+               ng-model="password2"
+               focus-bind="focuses.password2"
+               ng-disabled="submitting"
+               required
+               ng-minlength="6"
+               equals="{{password}}"
+               placeholder="{{'login.confirm_password_placeholder'|translate}}" >
+        <a class="form-control-feedback glyphicon glyphicon-ok"></a>
+    </div>
+
+    <button type="submit" class="btn btn-block btn-success btn-lg" ng-disabled="submitting">
+        <span ng-hide="submitting">{{'login.register'|translate}}</span>
+        <img src="/img/loading-bars.svg" alt="loading" ng-show="submitting"/>
+    </button>
+</form>

@@ -1,0 +1,32 @@
+<div class="page-header">
+    <h2 translate="options.order_history.title"></h2>
+
+    <div class="clearfix"></div>
+</div>
+
+<table class="orders table">
+    <thead>
+        <tr>
+            <th class="created-at" translate="options.order_history.order_time"></th>
+            <th class="order" translate="options.order_history.order_no"></th>
+            <th class="plan" translate="options.order_history.plan"></th>
+            <th class="price" translate="options.order_history.price"></th>
+            <th class="status" translate="options.order_history.status"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="trade in trades" ng-class="trade.status|tradeStyle">
+            <td class="created-at">{{trade.created_at|renderDatetime}}</td>
+            <td class="order">{{trade.out_no}}</td>
+            <td class="plan">{{trade.type + ('options.order_history.day'|translate)}}</td>
+            <td class="price">{{trade.total_fee | number: 2}}</td>
+            <td class="status">{{trade.status|renderTradeStatus}}</td>
+        </tr>
+        <tr ng-show="trades && !trades.length">
+            <td colspan="5">
+                <span class="text-muted" translate="options.order_history.empty_order"></span>
+                <a href="{{$root.payUrl}}" target="_blank" translate="options.order_history.pay_now"></a>
+            </td>
+        </tr>
+    </tbody>
+</table>

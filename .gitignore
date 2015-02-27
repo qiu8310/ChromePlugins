@@ -1,0 +1,9 @@
+temp
+.tmp
+dist
+.sass-cache
+package
+.idea
+Gemfile.lock
+vendors
+node_modules

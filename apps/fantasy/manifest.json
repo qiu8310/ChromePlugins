@@ -1,0 +1,67 @@
+{
+  "manifest_version": 2,
+
+  "name": "__MSG_ExtName__",
+  "default_locale": "en",
+  "description": "__MSG_ExtName__ExtDescription",
+  "version": "0.0.1",
+
+  "omnibox": { "keyword" : "__MSG_ExtKey__" },
+
+  "icons": {
+    "20": "img/icon-20.png",
+    "48": "img/icon-48.png",
+    "128": "img/icon-128.png"
+
+  },
+
+  "web_accessible_resources": [
+    "js/snippets.js"
+  ],
+
+  "permissions": [
+    "http://*/*",
+    "https://*/*",
+    "contextMenus",
+    "browsingData",
+    "webRequestBlocking",
+    "webRequest",
+    "storage",
+    "tabs"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "css": ["css/page.css"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "js/zepto.min.js",
+        "js/content_script_base.js",
+        "js/ext.dialog.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+
+  "background": {
+    "scripts": [
+      "scripts/bg.js"
+    ]
+  },
+
+  "browser_action": {
+    "default_title": "Fantasy",
+    "default_icon": "img/icon-20.png",
+    "default_popup": "menu.html"
+  }
+}

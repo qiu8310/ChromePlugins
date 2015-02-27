@@ -1,0 +1,202 @@
+ul,li {padding: 0; margin: 0;}
+li {list-style: none;}
+
+body {
+	color: black;
+	background: #f0f0f0;
+	margin: 0px;
+}
+.btnBack {
+	display: inline-block;
+	font-size: 15px;
+	cursor: pointer;
+	margin-top: 15px;
+}
+#wrapper {
+	margin: 0px 0px;
+	width: 293px;
+	font-family: "Arial", sans-serif;
+	font-size: 12px;
+	margin-left: 30px;
+	border-left: 2px groove white;
+	padding-left: 5px;
+	padding-bottom: 5px;
+}
+#wrapper #title {
+	padding: 8px 8px 2px 0px;
+	font-size: 14px;
+	text-align: right;
+	font-weight: bold;
+	cursor: default;
+}
+#wrapper #links li {
+	padding: 3px 2px;
+	cursor: pointer;
+	display: block;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+#wrapper #links li:not(.separator):not(.disabled):hover {
+	border: 1px solid #AECFF7;
+	border-radius: 3px;
+	padding: 2px 1px;
+	padding-left: 37px;
+	margin-left: -36px;
+}
+#wrapper #links li.disabled {
+	color: #999;
+	cursor: default;
+}
+#wrapper #links li.separator {
+	width: 100%;
+	border-top: 2px groove white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: -5px;
+	margin-right: -8px;
+}
+
+#pages {
+	margin: 0px 0px;
+	width: 300px;
+	font-family: "Arial", sans-serif;
+	font-size: 12px;
+	margin-left: 10px;
+}
+
+#pagePageQRCode {
+	padding: 10px;
+}
+
+#pagePageQRCode #qrdata {
+	margin-bottom: 20px;
+}
+
+#pagePageQRCode #qrdata input {
+	width: 270px;
+}
+
+#pagePageQRCode #qrcode {
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+}
+
+
+#pageClearBrowerData {
+	padding: 10px;
+}
+#pageClearBrowerData input {
+	outline: none;
+}
+#pageClearBrowerData ul {}
+#pageClearBrowerData li {
+	height: 30px;
+}
+#pageClearBrowerData li > label {
+	
+}
+
+#pageClearBrowerData li > span {
+	float: right;
+	margin-right: 0;
+	vertical-align: middle;
+}
+#pageClearBrowerData li > span input {
+	
+}
+#pageClearBrowerData li > span label {
+	display: block;
+	float: left;
+	margin-top: 3px;
+	margin-right: 5px;
+}
+
+
+
+.btn {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-block;
+	padding: 4px 8px;
+	-webkit-box-size: border-box;
+	box-size: border-box;
+	border-radius: 4px;
+	color: #333;
+	cursor: pointer;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#DDD));
+	background: linear-gradient(top, #FFF, #DDD);
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, .5);
+	border: 1px solid #999;
+	border-radius: 5px;
+	text-align: center;
+	width: 150px;
+	font-size: 16px;
+	line-height: 20px;
+	height: 20px;
+}
+
+.btn:hover {
+	color:#000; 
+	border-color:#666;
+}
+
+
+/* input */
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+	display: inline-block;
+	margin: 0;
+	font-size: 100%;
+	padding: 4px 6px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #555555;
+	vertical-align: middle;
+
+	border-radius: 4px;
+	@box_sizing;
+
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	 -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+	      transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus {
+	border-color: rgba(82, 168, 236, 0.8);
+	outline: 0;
+	outline: thin dotted \9;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}

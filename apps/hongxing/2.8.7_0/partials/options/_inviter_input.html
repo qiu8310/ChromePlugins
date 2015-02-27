@@ -1,0 +1,12 @@
+<form class="inviter-input input-group input-group-sm col-xs-5 pull-right" 
+    ng-submit="setInviter()">
+    <input type="text" class="form-control" placeholder="{{'options.my_inviter_placeholder'|translate}}"
+        manual-focus="focusInviterInput" ng-model="tempInviter"
+        ui-keydown="{esc: 'showInviterInput=false'}"
+        >
+    <div class="input-group-btn">
+        <button class="btn btn-success">
+            {{'common.ok'|translate}}
+        </button>
+    </div>
+</form>
