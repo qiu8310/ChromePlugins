@@ -80,7 +80,9 @@ module.exports = (grunt) ->
       options:
         browserifyOptions:
           debug: true
-        transform: ['babelify']
+        transform: [
+          ['babelify', {modules: 'common'}] # 指定命令的参数
+        ]
         # sourceMap: true # for babel
       apps:
         files: [{

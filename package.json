@@ -4,6 +4,7 @@
   "description": "Extension that help you development and entertainment",
   "main": "index.js",
   "dependencies": {
+    "babel": "^4.5.5",
     "grunt": "^0.4.5"
   },
   "devDependencies": {
