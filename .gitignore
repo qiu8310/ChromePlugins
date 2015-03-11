@@ -1,9 +1,7 @@
-temp
 .tmp
-dist
+dists
 .sass-cache
-package
 .idea
 Gemfile.lock
-vendors
+apps/*/vendors
 node_modules

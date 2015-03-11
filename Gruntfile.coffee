@@ -2,45 +2,77 @@ module.exports = (grunt) ->
 
   require('jit-grunt')(grunt)
   require('time-grunt')(grunt)
+  grunt.loadNpmTasks('grunt-usemin')
 
-  defaultAppName = if /--appName=(\w+)/.test(process.argv.join(',')) then RegExp.$1 else 'fantasy'
+  requireDataFileSafily = (file) -> if grunt.file.exists(file) then require(file) else {}
 
-  showAppName = () -> grunt.log.subhead("\r\n============= App Name: " + defaultAppName + ' =============')
-  updateAppName = (appName) ->
-    if appName and appName != defaultAppName
-      showAppName()
-      compassOption = grunt.config('compass.app.options')
-      compassOption[key] = val.replace(/^apps\/\w+/, 'apps/' + appName) for own key, val of compassOption
-      defaultAppName = appName
-      grunt.config('compass.app.options', compassOption);
-      return true
-    return false
 
-  showAppName()
+  defaultAppName = grunt.option('appName') || grunt.option('app-name') || 'fantasy'
+  grunt.log.subhead("\r\n============= App Name: " + defaultAppName + ' =============')
 
   grunt.initConfig
+    appName: defaultAppName
+
     watch:
       grunt:
-        options: { reload: true }
         files: [ 'Gruntfile.coffee']
 
       js:
-        options: { atBegin: true }
-        files: ['apps/*/scripts/*/{,*/}*.js']
-        tasks: ['browserify:apps']
+        files: ['apps/<%=appName%>/scripts/*/{,*/}*.js']
+        tasks: ['js']
 
       css:
-        options: { spawn: false } # 不能在子程序中，否则无法在 event 触发后执行 grunt.task.run
-        files: ['apps/*/assets/sass/{,*/}*.*', 'sass-lib/**/*.*']
+        files: ['apps/<%=appName%>/styles/{,*/}*.*', 'compass_lib/{,*/}*.*', '!compass_lib/vendors']
+        tasks: ['css']
+
+      html:
+        files: ['apps/<%=appName%>/{,views/}*.jade']
+        tasks: ['html']
+
+      image:
+        files: ['apps/<%=appName%>/images/{,*/}*.*', '!<%=appName%>/images/sp_*/*.*']
+        tasks: ['copy:app']
+
+
+    jade:
+      options:
+        pretty: true
+        data: requireDataFileSafily('./' + defaultAppName + '/jade_data.js')
+      app:
+        files: [{
+          expand: true
+          cwd: 'apps'
+          dest: 'dists'
+          ext: '.html'
+          src: ['<%=appName%>/*.jade']
+        }]
 
     bowerInstall:
-      apps:
-        src: [ 'apps/*/*.html' ]
+      app:
+        cwd: 'apps/<%=appName%>'
+        src: [ 'dists/<%=appName%>/*.html' ]
+
+    useminPrepare:
+      options:
+        dest: 'dists/<%=appName%>'
+      app:
+        src: [ 'dists/<%=appName%>/*.html' ]
+
+    usemin:
+      app:
+        options:
+          blockReplacements:
+            js: () -> return ''
+            css: () -> return ''
+        src: ['dists/<%=appName%>/*.html']
 
     compass:
       options:
-        require: [ 'ceaser-easing' ] # easings.net/zh-cn 缓动库，用 github.com/postcss/postcss-easings 替代
-        importPath: 'sass-lib'
+        require: [
+          './plugins/sass/functions.rb'
+          # 'ceaser-easing' # easings.net/zh-cn 缓动库，用 github.com/postcss/postcss-easings 替代
+        ]
+        importPath: 'compass_lib'
         outputStyle: 'nested'  #`nested`, `expanded`, `compact`, `compressed`
         noLineComments: true
         debugInfo: false
@@ -54,11 +86,10 @@ module.exports = (grunt) ->
 
       app: (() ->
         options:
-          sassDir: 'apps/' + defaultAppName + '/assets/sass'
-          cssDir: 'apps/' + defaultAppName + '/assets/css'
-          imagesDir: 'apps/' + defaultAppName + '/assets/images'
-          generatedImagesDir: 'apps/' + defaultAppName + '/assets/images/gen'
-          fontsDir: 'apps/' + defaultAppName + '/assets/fonts'
+          sassDir: 'apps/<%=appName%>/styles'
+          cssDir: 'dists/<%=appName%>/styles'
+          imagesDir: 'apps/<%=appName%>/images'
+          generatedImagesDir: 'dist/<%=appName%>/images/gen'
       )()
 
     postcss:
@@ -67,10 +98,10 @@ module.exports = (grunt) ->
         processors: [
           require('autoprefixer-core')({browsers: 'Chrome >= 24'})
         ]
-      apps:
+      app:
         files: [{
           expand: true
-          src: 'apps/*/assets/css/*.css'
+          src: 'dists/<%=appName%>/styles/*.css'
           dest: ''
           rename: (dest, src) -> src
         }]
@@ -84,21 +115,37 @@ module.exports = (grunt) ->
           ['babelify', {modules: 'common'}] # 指定命令的参数
         ]
         # sourceMap: true # for babel
-      apps:
+      app:
         files: [{
           expand: true
           cwd: 'apps'
-          src: '*/scripts/*/index.js'
-          dest: ''
-          rename: (dest, src) -> 'apps/'+ src.substring(0, src.lastIndexOf('/')) + '.js'
+          src: '<%=appName%>/scripts/*.js'
+          dest: 'dists'
+        }]
+
+    clean:
+      all: ['dists/<%=appName%>', '.tmp']
+      js: 'dists/<%=appName%>/scripts'
+      css: 'dists/<%=appName%>/styles'
+      html: 'dists/<%=appName%>/*.html'
+
+    copy:
+      app:
+        files: [{
+          expand: true
+          cwd: 'apps'
+          dest: 'dists'
+          src: [
+            '<%=appName%>/_locales'
+            '<%=appName%>/images/{,*/}*.*'
+            '!<%=appName%>/images/sp_*/*.*'
+            '<%=appName%>/manifest.json'
+          ]
         }]
 
 
-
-
-  grunt.registerTask 'css', ['compass:app', 'postcss:apps']
-
-  grunt.event.on 'watch', (action, filepath, target) ->
-    if target == 'css'
-      updateAppName(if /apps\/(\w+)\/assets/.test(filepath) then RegExp.$1 else false)
-      grunt.task.run 'css';
+  grunt.registerTask 'pre', ['clean:all', 'jade:app', 'bowerInstall:app', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']
+  grunt.registerTask 'js', ['clean:js', 'browserify:app']
+  grunt.registerTask 'css', ['clean:css', 'compass:app', 'postcss:app']
+  grunt.registerTask 'html', ['clean:html', 'jade:app']
+  grunt.registerTask 'default', ['pre', 'copy:app', 'js', 'css', 'html', 'watch']
