@@ -5,22 +5,19 @@ html
     meta(charset="utf8")
     title Fantasy
 
-    <!-- build:css vendors/vendors.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
+    // bundle:css:debug vendors/api.css
+    link(rel='stylesheet', href='vendors/bootstrap/dist/css/bootstrap.css')
+    // endbundle
 
-    link(rel="stylesheet" type="text/css" href="vendors/vendors.css")
     link(rel="stylesheet" type="text/css" href="styles/menu.css")
 
   body
 
-    #example ABC
+    #example ABCDEF
 
-    <!-- build:js vendors/vendors.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- endbuild -->
 
-    script(type="text/javascript" src="vendors/vendors.js")
+    <!-- bundle:js:min vendors/api.js -->
+    script(src='vendors/api.js')
+    <!-- endbundle -->
+
     script(type="text/javascript" src="scripts/t.js")

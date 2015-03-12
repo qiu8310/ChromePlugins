@@ -5,3 +5,4 @@ dists
 Gemfile.lock
 apps/*/vendors
 node_modules
+npm-debug.log

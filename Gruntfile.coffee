@@ -1,8 +1,12 @@
 module.exports = (grunt) ->
 
-  require('jit-grunt')(grunt)
   require('time-grunt')(grunt)
-  grunt.loadNpmTasks('grunt-usemin')
+  require('jit-grunt')(grunt, {
+    useminPrepare: 'grunt-usemin'
+  })({
+    loadTasks: 'plugins/grunt/tasks'
+  })
+
 
   requireDataFileSafily = (file) -> if grunt.file.exists(file) then require(file) else {}
 
@@ -17,8 +21,11 @@ module.exports = (grunt) ->
       grunt:
         files: [ 'Gruntfile.coffee']
 
+      bower:
+        files: ['apps/<%=appName%>/bower.json'],
+        tasks: ['bower']
       js:
-        files: ['apps/<%=appName%>/scripts/*/{,*/}*.js']
+        files: ['apps/<%=appName%>/scripts/{,*/}*.js']
         tasks: ['js']
 
       css:
@@ -34,6 +41,12 @@ module.exports = (grunt) ->
         tasks: ['copy:app']
 
 
+    bowerBundle:
+      app:
+        bowerDir: 'apps/<%=appName%>'
+        installDir: 'dists/<%=appName%>'
+        src: 'apps/<%=appName%>/*.jade'
+
     jade:
       options:
         pretty: true
@@ -46,25 +59,6 @@ module.exports = (grunt) ->
           ext: '.html'
           src: ['<%=appName%>/*.jade']
         }]
-
-    bowerInstall:
-      app:
-        cwd: 'apps/<%=appName%>'
-        src: [ 'dists/<%=appName%>/*.html' ]
-
-    useminPrepare:
-      options:
-        dest: 'dists/<%=appName%>'
-      app:
-        src: [ 'dists/<%=appName%>/*.html' ]
-
-    usemin:
-      app:
-        options:
-          blockReplacements:
-            js: () -> return ''
-            css: () -> return ''
-        src: ['dists/<%=appName%>/*.html']
 
     compass:
       options:
@@ -136,7 +130,7 @@ module.exports = (grunt) ->
           cwd: 'apps'
           dest: 'dists'
           src: [
-            '<%=appName%>/_locales'
+            '<%=appName%>/_locales/**/*.*'
             '<%=appName%>/images/{,*/}*.*'
             '!<%=appName%>/images/sp_*/*.*'
             '<%=appName%>/manifest.json'
@@ -144,8 +138,8 @@ module.exports = (grunt) ->
         }]
 
 
-  grunt.registerTask 'pre', ['clean:all', 'jade:app', 'bowerInstall:app', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']
+  grunt.registerTask 'bower', ['bowerBundle', 'html']
   grunt.registerTask 'js', ['clean:js', 'browserify:app']
   grunt.registerTask 'css', ['clean:css', 'compass:app', 'postcss:app']
   grunt.registerTask 'html', ['clean:html', 'jade:app']
-  grunt.registerTask 'default', ['pre', 'copy:app', 'js', 'css', 'html', 'watch']
+  grunt.registerTask 'default', ['clean:all', 'copy:app', 'js', 'css', 'bower', 'watch']
